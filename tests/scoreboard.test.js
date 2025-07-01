@@ -63,3 +63,31 @@ describe("test finishMatch", () => {
     );
   });
 });
+
+describe("test getSummary", () => {
+  test("orders summary by total score and start time", () => {
+    scoreboard.startMatch("Mexico", "Canada");
+    scoreboard.updateScore("Mexico", "Canada", 0, 5);
+
+    scoreboard.startMatch("Spain", "Brazil");
+    scoreboard.updateScore("Spain", "Brazil", 10, 2);
+
+    scoreboard.startMatch("Germany", "France");
+    scoreboard.updateScore("Germany", "France", 2, 2);
+
+    scoreboard.startMatch("Uruguay", "Italy");
+    scoreboard.updateScore("Uruguay", "Italy", 6, 6);
+
+    scoreboard.startMatch("Argentina", "Australia");
+    scoreboard.updateScore("Argentina", "Australia", 3, 1);
+
+    const summary = scoreboard.getSummary();
+    expect(summary).toEqual([
+      "Uruguay 6 - 6 Italy",
+      "Spain 10 - 2 Brazil",
+      "Mexico 0 - 5 Canada",
+      "Argentina 3 - 1 Australia",
+      "Germany 2 - 2 France",
+    ]);
+  });
+});

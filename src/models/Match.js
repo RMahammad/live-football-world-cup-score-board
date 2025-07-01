@@ -12,7 +12,7 @@ class Match {
       homeScore < 0 ||
       awayScore < 0 ||
       !Number.isInteger(homeScore) ||
-      !Number(awayScore)
+      !Number.isInteger(awayScore)
     ) {
       throw new Error("Scores must be non-negative numbers.");
     }
@@ -22,7 +22,11 @@ class Match {
   }
 
   getTotalScore() {
-    // Todo
+    return this.awayScore + this.homeScore;
+  }
+
+  getScoreLine() {
+    return `${this.homeTeam} ${this.homeScore} - ${this.awayScore} ${this.awayTeam}`;
   }
 }
 

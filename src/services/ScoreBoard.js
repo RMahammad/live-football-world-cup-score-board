@@ -31,6 +31,18 @@ class ScoreBoard {
   }
 
   finishMatch(homeTeam, awayTeam) {
+    const idx = this.matches.findIndex(
+      (m) => m.homeTeam === homeTeam && m.awayTeam === awayTeam
+    );
+    if (idx === -1) {
+      throw new Error("Match not found");
+    }
+
+    this.matches.splice(idx, 1);
+    return this.matches;
+  }
+
+  getSummary() {
     // Todo
   }
 }
