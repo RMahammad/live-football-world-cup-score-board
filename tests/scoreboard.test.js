@@ -15,4 +15,11 @@ describe("test startMatch", () => {
     expect(matches[0].homeScore).toBe(0);
     expect(matches[0].awayScore).toBe(0);
   });
+
+  test("return error when starting match with same teams", () => {
+    const matches = scoreboard.startMatch("Team A", "Team B");
+    expect(() => scoreboard.startMatch("Team A", "Team B")).toThrow(
+      "Match already started with Team A and Team B"
+    );
+  });
 });
