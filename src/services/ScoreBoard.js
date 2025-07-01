@@ -43,7 +43,20 @@ class ScoreBoard {
   }
 
   getSummary() {
-    // Todo
+    return this.matches
+      .slice()
+      .sort((a, b) => {
+        const totalDiff = b.getTotalScore() - a.getTotalScore();
+        if (totalDiff !== 0) return totalDiff;
+
+        const timeDiff = b.startTime.getTime() - a.startTime.getTime();
+        if (timeDiff !== 0) return timeDiff;
+
+        const idxA = this.matches.indexOf(a);
+        const idxB = this.matches.indexOf(b);
+        return idxB - idxA;
+      })
+      .map((m) => m.getScoreLine());
   }
 }
 
