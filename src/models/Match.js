@@ -8,13 +8,13 @@ class Match {
   }
 
   updateScore(homeScore, awayScore) {
-    // Todo
+    this.homeScore = homeScore;
+    this.awayScore = awayScore;
   }
 
-  getTotalScore(){
+  getTotalScore() {
     // Todo
   }
 }
-
 
 module.exports = Match;

@@ -19,7 +19,11 @@ class ScoreBoard {
   }
 
   updateScore(homeTeam, awayTeam, homeScore, awayScore) {
-    // Todo
+    const match = this.matches.find(
+      (m) => m.homeTeam === homeTeam && m.awayTeam === awayTeam
+    );
+
+    match.updateScore(homeScore, awayScore);
   }
 }
 
