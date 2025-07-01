@@ -17,6 +17,10 @@ class ScoreBoard {
     this.matches.push(match);
     return this.matches;
   }
+
+  updateScore(homeTeam, awayTeam, homeScore, awayScore) {
+    // Todo
+  }
 }
 
 module.exports = ScoreBoard;

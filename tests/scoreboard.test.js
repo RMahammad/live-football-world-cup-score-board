@@ -23,3 +23,12 @@ describe("test startMatch", () => {
     );
   });
 });
+
+describe("test updateScore", () => {
+  test("updates score correctly", () => {
+    const matches = scoreboard.startMatch("Team A", "Team B");
+    scoreboard.updateScore("Team A", "Team B", 2, 3);
+    expect(matches[0].homeScore).toBe(2);
+    expect(matches[0].awayScore).toBe(3);
+  });
+});
