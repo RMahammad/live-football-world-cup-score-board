@@ -31,4 +31,21 @@ describe("test updateScore", () => {
     expect(matches[0].homeScore).toBe(2);
     expect(matches[0].awayScore).toBe(3);
   });
+
+  test("check that scores are non negative integers", () => {
+    const matches = scoreboard.startMatch("Team A", "Team B");
+
+    expect(() => scoreboard.updateScore("Team A", "Team B", -2, -3)).toThrow(
+      "Scores must be non-negative numbers."
+    );
+    expect(() => scoreboard.updateScore("Team A", "Team B", "1", "2")).toThrow(
+      "Scores must be non-negative numbers."
+    );
+  });
+
+  test("return an error when update non existing match", () => {
+    expect(() => scoreboard.updateScore("Team A", "Team B", 2, 3)).toThrow(
+      "Match not found"
+    );
+  });
 });
