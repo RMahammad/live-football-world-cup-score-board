@@ -17,7 +17,7 @@ describe("test startMatch", () => {
   });
 
   test("return error when starting match with same teams", () => {
-    const matches = scoreboard.startMatch("Team A", "Team B");
+    scoreboard.startMatch("Team A", "Team B");
     expect(() => scoreboard.startMatch("Team A", "Team B")).toThrow(
       "Match already started with Team A and Team B"
     );
@@ -33,7 +33,7 @@ describe("test updateScore", () => {
   });
 
   test("check that scores are non negative integers", () => {
-    const matches = scoreboard.startMatch("Team A", "Team B");
+    scoreboard.startMatch("Team A", "Team B");
 
     expect(() => scoreboard.updateScore("Team A", "Team B", -2, -3)).toThrow(
       "Scores must be non-negative numbers."
@@ -45,6 +45,20 @@ describe("test updateScore", () => {
 
   test("return an error when update non existing match", () => {
     expect(() => scoreboard.updateScore("Team A", "Team B", 2, 3)).toThrow(
+      "Match not found"
+    );
+  });
+});
+
+describe("test finishMatch", () => {
+  test("Remove finished match from scoreboard", () => {
+    const matches = scoreboard.startMatch("Team A", "Team B");
+    scoreboard.finishMatch("Team A", "Team B");
+    expect(matches).toHaveLength(0);
+  });
+
+  test("return an error when finish non existing match", () => {
+    expect(() => scoreboard.finishMatch("Team A", "Team B")).toThrow(
       "Match not found"
     );
   });

@@ -23,7 +23,15 @@ class ScoreBoard {
       (m) => m.homeTeam === homeTeam && m.awayTeam === awayTeam
     );
 
+    if (!match) {
+      throw new Error("Match not found");
+    }
+
     match.updateScore(homeScore, awayScore);
+  }
+
+  finishMatch(homeTeam, awayTeam) {
+    // Todo
   }
 }
 
