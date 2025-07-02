@@ -31,7 +31,7 @@ class ScoreBoard {
     }
     const match = new Match(home, away);
     this.matches.set(key, match);
-    return this.matches;
+    return new Map(this.matches);
   }
 
   updateScore(homeTeam, awayTeam, homeScore, awayScore) {
@@ -53,7 +53,7 @@ class ScoreBoard {
     }
 
     this.matches.delete(key);
-    return this.matches;
+    return new Map(this.matches);
   }
 
   getSummary() {
