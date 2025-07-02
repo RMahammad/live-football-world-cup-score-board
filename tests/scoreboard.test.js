@@ -22,6 +22,21 @@ describe("test startMatch", () => {
       "Match already started with Team A and Team B"
     );
   });
+
+  test("return error when home team or away team is not a string or empty", () => {
+    expect(() => scoreboard.startMatch("", "Team B")).toThrow(
+      "Home team and away team must be non-empty strings"
+    );
+    expect(() => scoreboard.startMatch("Team A", "")).toThrow(
+      "Home team and away team must be non-empty strings"
+    );
+    expect(() => scoreboard.startMatch(123, "Team B")).toThrow(
+      "Home team and away team must be non-empty strings"
+    );
+    expect(() => scoreboard.startMatch("Team A", 456)).toThrow(
+      "Home team and away team must be non-empty strings"
+    );
+  });
 });
 
 describe("test updateScore", () => {
