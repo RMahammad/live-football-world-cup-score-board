@@ -6,14 +6,25 @@ class ScoreBoard {
   }
 
   startMatch(homeTeam, awayTeam) {
+    if (typeof homeTeam !== "string" || typeof awayTeam !== "string") {
+      throw new Error("Home team and away team must be non-empty strings");
+    }
+
+    const home = homeTeam.trim();
+    const away = awayTeam.trim();
+
+    if (!home || !away) {
+      throw new Error("Home team and away team must be non-empty strings");
+    }
+
     if (
       this.matches.some(
-        (match) => match.homeTeam === homeTeam && match.awayTeam === awayTeam
+        (match) => match.homeTeam === home && match.awayTeam === away
       )
     ) {
-      throw new Error("Match already started with Team A and Team B");
+      throw new Error(`Match already started with ${home} and ${away}`);
     }
-    const match = new Match(homeTeam, awayTeam);
+    const match = new Match(home, away);
     this.matches.push(match);
     return this.matches;
   }

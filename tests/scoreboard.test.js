@@ -19,7 +19,7 @@ describe("test startMatch", () => {
   test("return error when starting match with same teams", () => {
     scoreboard.startMatch("Team A", "Team B");
     expect(() => scoreboard.startMatch("Team A", "Team B")).toThrow(
-      "Match already started with Team A and Team B"
+      `Match already started with Team A and Team B`
     );
   });
 
