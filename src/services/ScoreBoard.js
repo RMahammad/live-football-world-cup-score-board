@@ -54,7 +54,8 @@ class ScoreBoard {
   }
 
   getSummary() {
-    return this.matches
+    const matchList = Array.from(this.matches.values());
+    return matchList
       .slice()
       .sort((a, b) => {
         const totalDiff = b.getTotalScore() - a.getTotalScore();
@@ -63,8 +64,8 @@ class ScoreBoard {
         const timeDiff = b.startTime.getTime() - a.startTime.getTime();
         if (timeDiff !== 0) return timeDiff;
 
-        const idxA = this.matches.indexOf(a);
-        const idxB = this.matches.indexOf(b);
+        const idxA = matchList.indexOf(a);
+        const idxB = matchList.indexOf(b);
         return idxB - idxA;
       })
       .map((m) => m.getScoreLine());
