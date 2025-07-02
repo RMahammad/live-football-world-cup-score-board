@@ -6,7 +6,10 @@ class ScoreBoard {
   }
 
   _key(homeTeam, awayTeam) {
-    return `${homeTeam}__vs__${awayTeam}`;
+    const home = homeTeam.trim().toLowerCase();
+    const away = awayTeam.trim().toLowerCase();
+
+    return `${home}__vs__${away}`;
   }
 
   startMatch(homeTeam, awayTeam) {
@@ -14,8 +17,8 @@ class ScoreBoard {
       throw new Error("Home team and away team must be non-empty strings");
     }
 
-    const home = homeTeam.trim();
-    const away = awayTeam.trim();
+    const home = homeTeam.trim()
+    const away = awayTeam.trim()
 
     const key = this._key(home, away);
 
