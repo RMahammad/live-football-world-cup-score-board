@@ -32,9 +32,8 @@ class ScoreBoard {
   }
 
   updateScore(homeTeam, awayTeam, homeScore, awayScore) {
-    const match = this.matches.find(
-      (m) => m.homeTeam === homeTeam && m.awayTeam === awayTeam
-    );
+    const key = this._key(homeTeam, awayTeam);
+    const match = this.matches.get(key)
 
     if (!match) {
       throw new Error("Match not found");
