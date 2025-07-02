@@ -74,7 +74,7 @@ describe("test finishMatch", () => {
   test("Remove finished match from scoreboard", () => {
     const matches = scoreboard.startMatch("Team A", "Team B");
     scoreboard.finishMatch("Team A", "Team B");
-    expect(matches).toHaveLength(0);
+    expect(matches.size).toBe(0);
   });
 
   test("return an error when finish non existing match", () => {
