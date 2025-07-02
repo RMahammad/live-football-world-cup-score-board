@@ -2,7 +2,11 @@ const Match = require("../models/Match");
 
 class ScoreBoard {
   constructor() {
-    this.matches = [];
+    this.matches = new Map();
+  }
+
+  _key(homeTeam, awayTeam) {
+    return `${homeTeam}__vs__${awayTeam}`;
   }
 
   startMatch(homeTeam, awayTeam) {
@@ -13,19 +17,17 @@ class ScoreBoard {
     const home = homeTeam.trim();
     const away = awayTeam.trim();
 
+    const key = this._key(home, away);
+
     if (!home || !away) {
       throw new Error("Home team and away team must be non-empty strings");
     }
 
-    if (
-      this.matches.some(
-        (match) => match.homeTeam === home && match.awayTeam === away
-      )
-    ) {
+    if (this.matches.has(key)) {
       throw new Error(`Match already started with ${home} and ${away}`);
     }
     const match = new Match(home, away);
-    this.matches.push(match);
+    this.matches.set(key, match);
     return this.matches;
   }
 

@@ -9,11 +9,14 @@ beforeEach(() => {
 describe("test startMatch", () => {
   test("should start match with home and away teams with 0 - 0 score", () => {
     const matches = scoreboard.startMatch("Team A", "Team B");
-    expect(matches).toHaveLength(1);
-    expect(matches[0].homeTeam).toBe("Team A");
-    expect(matches[0].awayTeam).toBe("Team B");
-    expect(matches[0].homeScore).toBe(0);
-    expect(matches[0].awayScore).toBe(0);
+
+    expect(matches.size).toBe(1);
+    const key = scoreboard._key("Team A", "Team B")
+    const match = matches.get(key)
+    expect(match.homeTeam).toBe("Team A");
+    expect(match.awayTeam).toBe("Team B");
+    expect(match.homeScore).toBe(0);
+    expect(match.awayScore).toBe(0);
   });
 
   test("return error when starting match with same teams", () => {
