@@ -45,9 +45,11 @@ describe("test startMatch", () => {
 describe("test updateScore", () => {
   test("updates score correctly", () => {
     const matches = scoreboard.startMatch("Team A", "Team B");
+    const key = scoreboard._key("Team A", "Team B");
+    const match = matches.get(key);
     scoreboard.updateScore("Team A", "Team B", 2, 3);
-    expect(matches[0].homeScore).toBe(2);
-    expect(matches[0].awayScore).toBe(3);
+    expect(match.homeScore).toBe(2);
+    expect(match.awayScore).toBe(3);
   });
 
   test("check that scores are non negative integers", () => {
