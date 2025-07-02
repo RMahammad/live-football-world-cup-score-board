@@ -72,8 +72,8 @@ describe("test updateScore", () => {
 
 describe("test finishMatch", () => {
   test("Remove finished match from scoreboard", () => {
-    const matches = scoreboard.startMatch("Team A", "Team B");
-    scoreboard.finishMatch("Team A", "Team B");
+    scoreboard.startMatch("Team A", "Team B");
+    const matches = scoreboard.finishMatch("Team A", "Team B");
     expect(matches.size).toBe(0);
   });
 

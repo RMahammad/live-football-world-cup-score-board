@@ -33,7 +33,7 @@ class ScoreBoard {
 
   updateScore(homeTeam, awayTeam, homeScore, awayScore) {
     const key = this._key(homeTeam, awayTeam);
-    const match = this.matches.get(key)
+    const match = this.matches.get(key);
 
     if (!match) {
       throw new Error("Match not found");
@@ -43,14 +43,13 @@ class ScoreBoard {
   }
 
   finishMatch(homeTeam, awayTeam) {
-    const idx = this.matches.findIndex(
-      (m) => m.homeTeam === homeTeam && m.awayTeam === awayTeam
-    );
-    if (idx === -1) {
+    const key = this._key(homeTeam, awayTeam);
+    const match = this.matches.get(key);
+    if (!match) {
       throw new Error("Match not found");
     }
 
-    this.matches.splice(idx, 1);
+    this.matches.delete(key);
     return this.matches;
   }
 
